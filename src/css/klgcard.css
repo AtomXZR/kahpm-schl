@@ -1,0 +1,81 @@
+.klgcardwrapp {
+    overflow-y: scroll;
+    scrollbar-width: 5px;
+}
+.klgcardwrapp::-webkit-scrollbar {
+    display: initial;
+    width: 5px;
+    background-color: transparent;
+}
+.klgcardwrapp::-webkit-scrollbar-thumb {
+    width: 5px;
+    border-radius: 50px;
+    background-color: darkgray;
+}
+
+.klgcardcon {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+.contx.info.klg h1.title {
+    font-size: xx-large;
+    text-align: center;
+}
+
+.contx.info.klg hr {
+    margin: 10px;
+    width: auto;
+    border-color: rgb(255 255 255);
+}
+
+
+.klgcard {
+    max-width: 300px;
+    width: 300px;
+    max-height: 70px;
+    height: 70px;
+    background: rgb(82, 82, 82);
+    border-radius: 8px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+
+    margin: 5px;
+}
+
+.klgcard h1 {
+    max-width: 40px;
+    max-height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background: white;
+    margin-right: 5px;
+
+    color: black;
+}
+
+.klgcard p {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-break: normal;
+    display: flex;
+    align-items: center;
+    
+    color: rgb(255, 255, 255);
+}

@@ -1,0 +1,91 @@
+.contx {
+    width: 100%;
+    height: 100%;
+}
+
+.contx.info.datalisty {
+    background-color: white;
+
+    max-width: 320px;
+    min-width: 320px;
+    width: 320px;
+
+    height: 100%;
+    z-index: 1;
+    box-shadow: white 0 0 10px 0px;
+
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+
+    padding: 5px;
+}
+
+.contx.info.datalisty h1[titlee] {
+    margin-right: auto;
+    font-size: xx-large;
+}
+
+.contx.info.datalisty hr {
+    width: 100%;
+    border-color: rgb(150, 150, 150);
+    margin-bottom: 5px;
+}
+
+.intercontentwrapper {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding: 5px;
+    -ms-overflow-style: none;
+
+    scrollbar-width: 5px;
+}
+.intercontentwrapper::-webkit-scrollbar {
+    display: initial;
+    width: 5px;
+    background-color: transparent;
+}
+.intercontentwrapper::-webkit-scrollbar-thumb {
+    width: 5px;
+    border-radius: 50px;
+    background-color: darkgray;
+}
+
+.intercontent {
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+}
+
+.contx.info.klg {
+    background-color: lightskyblue;
+    overflow: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .intercontentwrapper::-webkit-scrollbar {
+        display: none;
+    }
+
+    .intercontentwrapper {
+        overflow: hidden;
+
+        scrollbar-width: 0px;
+    }
+
+    .contx.info.datalisty *[hide1] {
+        display: none;
+        visibility: hidden;
+    }
+    .contx.info.datalisty {
+        max-width: 100%;
+        min-width: 100%;
+        width: 100%;
+        min-height: 100px;
+        height: 100px;
+        max-height: 100px;
+    }
+}

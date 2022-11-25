@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Kanit Regular";
+    src: url("./fonts/Kanit-Regular.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat Semi-bold";
+    src: url("./fonts/Montserrat-SemiBold.woff");
+    font-display: swap;
+}
