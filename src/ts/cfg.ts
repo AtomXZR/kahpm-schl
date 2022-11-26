@@ -1,4 +1,6 @@
 const USERLANG = /^th\b/.test(navigator.language) ? "th":"en";
+
+const GEOLOCAPI = "http://ip-api.com/json/";
 // eslint-disable-next-line prefer-const
 let apie = "https://air4thai.pcd.go.th/forappV2/getAQI_JSON.php";
 if (document.location.protocol === "http:") apie = "http://air4thai.pcd.go.th/forappV2/getAQI_JSON.php";
@@ -15,4 +17,4 @@ const REQINIT:RequestInit = {
 
 
 
-export { USERLANG, APIPIE, REQINIT };
+export { USERLANG, APIPIE, REQINIT, GEOLOCAPI };

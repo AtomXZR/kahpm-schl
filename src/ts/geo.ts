@@ -1,17 +1,11 @@
-import { USERLANG } from "./cfg";
+import { GEOLOCAPI, REQINIT } from "./cfg";
 import {stationData} from "./interfaces";
-let GEOSUPPORT = false;
-const USEHIGHACCURACY = (new URL(String(document.location))).searchParams.has("nogeoha")?false:true; console.log("ha "+ USEHIGHACCURACY);
-if ("geolocation" in navigator) GEOSUPPORT = true;
-const getGeo = async ():Promise<{s:boolean, d?:string,c?:GeolocationPosition}> => {
+
+// const USEHIGHACCURACY = (new URL(String(document.location))).searchParams.has("nogeoha")?false:true; console.log("ha "+ USEHIGHACCURACY);
+
+const getGeo = async ():Promise<{s:boolean, d?:{lat:number,lon:number}}> => {
     return new Promise((res, rej) => {
-        if (!GEOSUPPORT) rej({s:false,d:"Geo not supported"});
-        navigator.geolocation.getCurrentPosition((x) => res({s:true,c:x}), (l) => {
-            res({s:false,d:l.message});
-            // if (USERLANG === "th") window.alert("เราใช้ GeoLocation เพื่อค้นหาข้อมูลที่อยู่ใกล้คุณที่สุด"); else window.alert("We used GeoLocation to find the information nearest to you.");
-        }, {
-            enableHighAccuracy: USEHIGHACCURACY,
-        });
+        fetch(GEOLOCAPI, REQINIT).then(x => x.json()).then(x => res({s:true,d:x})).catch(() => rej({s:false}));
     });
 };
 
@@ -30,22 +24,24 @@ const calcDistance = async (sd:stationData[]) => {
     const narf:stationData[] = [];
 
     for (let x = 0; x < sd.length; x++) {
-        if (!geon.c) throw new Error("c is undefined.");
+        if (!geon.d) throw new Error("d is undefined.");
         const e = sd[x];
         // console.log(e);
         const elat = Number(e.lat);
         const elon = Number(e.long);
-        const curRadLat = Math.PI * (geon.c.coords.latitude/180);
-        // const curRadLon = Math.PI * geon.c.coords.longitude/180;
+        const curRadLat = Math.PI * (geon.d.lat/180);
+        // const curRadLon = Math.PI * geon.d.lon/180;
         const staRadLat = Math.PI * (elat/180);
         // const staRadLon = Math.PI * elon/180;
-        const theta = geon.c.coords.longitude-elon;
+        const theta = geon.d.lon-elon;
         const radtheta = Math.PI * (theta/180);
         const dst = Math.sin(curRadLat) * Math.sin(staRadLat) + Math.cos(curRadLat) * Math.cos(staRadLat) * Math.cos(radtheta);
         const distn = Math.acos(dst);
         const disto = distn * (180 / Math.PI);
         const distp = disto * (60 * 1.1515);
 
+        //const xasn = Math.pow((elat - geon.d.lat), 2) + Math.pow((elon - geon.d.lon), 2);
+        //const xoan = xasn; //Math.sqrt(xasn);
         
         const distancy = distp * 1.609344;
         if (isNaN(distancy)) console.warn("DISTANCY is NAN");
@@ -53,6 +49,9 @@ const calcDistance = async (sd:stationData[]) => {
         e.distance = String(distancy);
         narf.push(e);
     }
+
+    console.log(narf);
+    
     return narf;
 };
 

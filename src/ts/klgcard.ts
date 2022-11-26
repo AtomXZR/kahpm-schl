@@ -17,7 +17,9 @@ const createCard = (cd:klgcd) => {
 };
 
 
+
 ///////////////////////////////////////////////////////////////////
+
 const procKlg = () => {
     const dataEN:string[] = [
         "Close the window to prevent small dust particles.",
@@ -80,4 +82,37 @@ const procKlgRDS = () => {
     }
 };
 
-export { procKlg, procKlgRDS };
+const procABU = () => {
+    const dataEN:string[] = [
+        "This site is developed as a school projekt.",
+        "This site relies on IP-API and Air4Thai API.",
+        "This site uses GeoLocation to find the nearest station. (may not be accurate.)"
+    ];
+    const dataTH:string[] = [
+        "เว็บไซต์นี้จัดทำขึ้นเพื่อเป็นโครงการของโรงเรียน",
+        "เว็บไซต์นี้ใช้ IP-API และ Air4Thai API",
+        "ไซต์นี้ใช้ GeoLocation เพื่อค้นหาสถานีที่ใกล้ที่สุด (อาจไม่ถูกต้อง)"
+    ];
+    const klgcardcon = document.querySelector("#dat_abu");
+    if (!klgcardcon) return;
+    while (klgcardcon.hasChildNodes()) {
+        if (!klgcardcon.lastChild) return;
+        klgcardcon.removeChild(klgcardcon.lastChild);
+    }
+    let data = dataEN;
+    if (USERLANG === "th") data = dataTH;
+    for (let x = 0; x < data.length; x++) {
+        const e = data[x];
+        const c = createCard({num: x+1, data: e});
+        klgcardcon.appendChild(c);
+    }
+};
+
+
+
+const bakeKlg = async () => {
+    procKlg();
+    procKlgRDS();
+    procABU();
+};
+export { bakeKlg };

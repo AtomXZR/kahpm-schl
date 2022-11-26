@@ -125,7 +125,7 @@ const config = {
         port: 9000,
         hot: true,
 
-        https: true,
+        // https: true,
     },
 };
 
