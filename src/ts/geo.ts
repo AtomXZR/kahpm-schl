@@ -5,7 +5,7 @@ import {stationData} from "./interfaces";
 
 const getGeo = async ():Promise<{s:boolean, d?:{lat:number,lon:number}}> => {
     return new Promise((res, rej) => {
-        fetch(GEOLOCAPI, REQINIT).then(x => x.json()).then(x => res({s:true,d:x})).catch(() => rej({s:false}));
+        fetch(GEOLOCAPI, REQINIT).then(x => x.json()).then(x => res({s:true,d:x})).catch((r) => {rej({s:false});alert(r);});
     });
 };
 
